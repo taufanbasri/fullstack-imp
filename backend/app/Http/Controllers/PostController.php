@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
+use App\Http\Resources\PostCollection;
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -12,23 +15,21 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $posts = Post::orderByDesc('id')->paginate();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return new PostCollection($posts);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $post = Post::create($data);
+
+        return new PostResource($post);
     }
 
     /**
@@ -36,23 +37,19 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Post $post)
-    {
-        //
+        return new PostResource($post);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $data = $request->validated();
+
+        $post->update($data);
+
+        return new PostResource($post);
     }
 
     /**
@@ -60,6 +57,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return response()->json(['message' => 'Post Deleted!']);
     }
 }
