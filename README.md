@@ -22,6 +22,13 @@ php artisan key:generate
 
 nano .env
 
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=backend
+DB_USERNAME=root
+DB_PASSWORD=password
+
 # Run migrations and seed the database
 
 php artisan migrate --seed
@@ -37,6 +44,8 @@ npm install
 # Create .env.local and set the backend URL
 
 nano .env.local
+
+set NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
 
 # Start the development server
 
