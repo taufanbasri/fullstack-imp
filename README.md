@@ -1,66 +1,43 @@
-Fullstack-IMP
-System Requirements:
-Make sure your computer has the following installed:
+# Clone the repository
 
-PHP 8.1 or later
-Composer
-MySQL or other RDBMS
-Node.js 16.8 or later.
-Installation:
-Clone the repository by running the following command:
-
-bash
-Copy code
 git clone https://github.com/taufanbasri/fullstack-imp
-Change directory to the backend folder:
 
-bash
-Copy code
+# Change directory to the backend folder
+
 cd backend
-Run the following command to install the required dependencies:
 
-Copy code
+# Install dependencies
+
 composer install
-Copy the .env.example file to .env:
 
-bash
-Copy code
+# Copy the .env.example file to .env
+
 cp .env.example .env
-Generate a new APP_KEY by running the following command:
 
-vbnet
-Copy code
+# Generate APP_KEY
+
 php artisan key:generate
-Edit the .env file to match your database settings:
 
-makefile
-Copy code
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=backend
-DB_USERNAME=root
-DB_PASSWORD=password
-Run the migrations and seed the database:
+# Edit the .env file to match your database settings
 
-Copy code
-php artisan serve
-Change directory to the frontend folder:
+nano .env
 
-bash
-Copy code
+# Run migrations and seed the database
+
+php artisan migrate --seed
+
+# Change directory to the frontend folder
+
 cd ../frontend
-Install the required dependencies:
 
-Copy code
+# Install dependencies
+
 npm install
-Create a .env.local file in the root directory of the frontend folder and edit it to match your backend URL:
 
-bash
-Copy code
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
-Start the development server:
+# Create .env.local and set the backend URL
 
-Copy code
+nano .env.local
+
+# Start the development server
+
 npm run dev
-Visit the URL provided, usually http://localhost:3000.
